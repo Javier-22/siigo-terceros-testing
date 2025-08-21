@@ -1,0 +1,61 @@
+plugins {
+    id 'java'
+    id 'eclipse'
+    id 'idea'
+    id "net.serenity-bdd.serenity-gradle-plugin" version "3.9.0"
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+sourceCompatibility = 17
+targetCompatibility = 17
+
+ext {
+    serenity_version = '3.9.0'
+
+    junit_platform_launcher_version="1.9.3"
+    cucumber_junit_platform_engine_version="7.11.2"
+    junit_platform_suite_version="1.9.3"
+    junit_jupiter_engine_version="5.9.3"
+    junit_vintage_engine_version="5.9.3"
+
+    logback_classic_version="1.2.10"
+    assertj_core_version="3.23.1"
+    jackson_version="2.15.2"
+}
+
+dependencies {
+    testImplementation "net.serenity-bdd:serenity-core:${serenity_version}"
+    testImplementation "net.serenity-bdd:serenity-cucumber:${serenity_version}"
+    implementation "net.serenity-bdd:serenity-screenplay:${serenity_version}"
+    implementation "net.serenity-bdd:serenity-screenplay-rest:${serenity_version}"
+    testImplementation "net.serenity-bdd:serenity-screenplay-webdriver:${serenity_version}"
+    testImplementation "net.serenity-bdd:serenity-ensure:${serenity_version}"
+
+    testImplementation "org.junit.platform:junit-platform-launcher:${junit_platform_launcher_version}"
+    testImplementation "io.cucumber:cucumber-junit-platform-engine:${cucumber_junit_platform_engine_version}"
+    testImplementation "org.junit.platform:junit-platform-suite:${junit_platform_suite_version}"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:${junit_jupiter_engine_version}"
+    testImplementation "org.junit.vintage:junit-vintage-engine:${junit_vintage_engine_version}"
+
+    implementation "ch.qos.logback:logback-classic:${logback_classic_version}"
+    testImplementation "org.assertj:assertj-core:${assertj_core_version}"
+
+    implementation group: 'net.datafaker', name: 'datafaker', version: '2.3.1'
+
+    implementation "com.fasterxml.jackson.core:jackson-core:${jackson_version}"
+    implementation "com.fasterxml.jackson.core:jackson-databind:${jackson_version}"
+    implementation "com.fasterxml.jackson.core:jackson-annotations:${jackson_version}"
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy 'aggregate'
+}
+
+gradle.startParameter.continueOnFailure = true
+
+test.finalizedBy(aggregate)
