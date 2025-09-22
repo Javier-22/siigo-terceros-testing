@@ -49,6 +49,8 @@ dependencies {
     implementation "com.fasterxml.jackson.core:jackson-core:${jackson_version}"
     implementation "com.fasterxml.jackson.core:jackson-databind:${jackson_version}"
     implementation "com.fasterxml.jackson.core:jackson-annotations:${jackson_version}"
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
 }
 
 test {
