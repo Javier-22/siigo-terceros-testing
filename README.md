@@ -1,4 +1,4 @@
-# `SerenityBddPruebaSiigo`
+# `Siigo-automatización`
 
 Este proyecto es un ejemplo de automatización de pruebas para la plataforma Siigo, tiene una parte frontend(Plataforma interna) y una parte (Backend) utilizando la página de regres.in
 
